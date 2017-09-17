@@ -4,14 +4,12 @@
 
 (b) Para instalar o lhs2tex, primeiro você precisa ter instalado a plataforma Haskell (http://www.haskell.org). 
 
----
     [Fazer download do Cabal 2.0.](https://www.haskell.org/cabal/download.html) Após descompactar, seguir os passos:
     * ghc -threaded --make Setup
  A instalação pode ser local, com escolha da pasta usando --prefix, por exemplo --prefix=/home/user/install/cabal    
     * ./Setup configure --user
     * ./Setup build
     * ./Setup install
----
 
 
 Em seguida, na linha de comando (suponho que você esteja trabalhando em uma máquina Unix like), executar o comando: 
@@ -20,11 +18,12 @@ Em seguida, na linha de comando (suponho que você esteja trabalhando em uma má
 
 Isso deve instalar o lhs2tex no diretório <home>/.cabal/bin (isso no Linux). Ajustar o caminho deste arquivo no Makefile
 
----
 Pode ser necessário a instalação de pacotes adicionais do latex, caso não tenha a versão completa. Assim, executar os comandos:
     * sudo apt-get update
     * sudo apt-get install texlive-math-extra texlive-latex-extra texlive-latex-base texlive-generic-extra texlive-science texlive-fonts-extra
----
+
+    Nos códigos aqui presentes, é utilizado também o [HUnit](https://github.com/hspec/HUnit), que pode ser instalado com
+    * cabal install HUnit 
 
 
 (c) Na raiz do projeto, executar o comando make, gerando o arquivo PLAI.pdf
