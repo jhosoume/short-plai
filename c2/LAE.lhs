@@ -189,7 +189,7 @@ The rules reduce this to \texttt{Let x = 5 in 5 + Let 5 = 3 in 10}.
 Huh? Our substitution rule converted a perfectly reasonable program 
 (whose value is 15) into one that 
 isn't even syntactically legal, i.e., it would be rejected by a parser 
-because the program contains a \texttt{5} where the 
+because the program contains a \texttt{5} where 
 the \bnf tells us to expect an identifier. We definitely don't 
 want substitution to have such an effect! It's 
 obvious that the substitution algorithm is too naive. To state 
@@ -269,7 +269,7 @@ by the inner binding. Because substitution doesn't
 recognize this possibility, it incorrectly substitutes 
 the inner \texttt{x}. 
 
-\begin{mydef}[Substitution, take 2]{def:substitution2}
+\begin{mydef}[Substitution, take 3]{def:substitution3}
 Given an expression like $Let\ x =\ exp_1\ in\ exp_2$,
 the components of the \texttt{Let} expression are the 
 identifier \texttt{$x$}, the named expression \texttt{$exp_1$}, 
@@ -305,7 +305,7 @@ blush, is too draconian: it rules out substitution
 within \emph{any} nested scopes. 
 
 
-\begin{mydef}[Substitution, take 2]{def:substitution2}
+\begin{mydef}[Substitution, take 4]{def:substitution4}
 Given an expression like $Let\ x =\ exp_1\ in\ exp_2$,
 the components of the \texttt{Let} expression are the 
 identifier \texttt{$x$}, the named expression \texttt{$exp_1$}, 
@@ -322,7 +322,7 @@ Finally, we have a version of substitution that works. A different,
 more succinct way of phrasing this definition is
 
 
-\begin{mydef}[Substitution, take 5]{def:substitution2}
+\begin{mydef}[Substitution, take 5]{def:substitution5}
 Given an expression like $Let\ x =\ exp_1\ in\ exp_2$,
 the components of the \texttt{Let} expression are the 
 identifier \texttt{$x$}, the named expression \texttt{$exp_1$}, 

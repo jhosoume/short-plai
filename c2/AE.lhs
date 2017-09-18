@@ -71,11 +71,11 @@ syntax tree (a possible alternative is shown in Figure~\ref{ast:ae}). That is,
 after choosing an interesting concrete syntax for a language, 
 a parser reads a program written according to the concrete 
 syntax and ouputs an instance of an abstract syntax tree (AST). We will 
-not give to much attention to concrete syntaxes and parsers in this 
-book. Here, we are mostly intereted in the semantics of a programming 
+not give too much attention to concrete syntaxes and parsers in this 
+book. Here, we are mostly interested in the semantics of a programming 
 language (in this case, expressed in terms of the \texttt{calc} 
 function). We also have to define a \emph{data type} for representing the 
-\texttt{AE} AST using Haskell (see Listing~\ref{}). Note 
+\texttt{AE} AST using Haskell (see Listing~\ref{code:ae}). Note 
 how similar with the \textsc{BNF} such a data representation 
 is (\texttt{Integer} is a primitive data type in Haskell). In this particular 
 case, we define a new data type (named \texttt{AE}) with three data constructors: 
