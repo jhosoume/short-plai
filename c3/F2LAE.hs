@@ -1,6 +1,7 @@
 module F2LAE where 
 
 import Prelude hiding (lookup)
+import Test.HUnit
 
 type Id = String 
 type Var  = String 
@@ -18,6 +19,7 @@ data Exp = Num Integer
           | App Id Exp 
           | Lambda Id Exp
           | AppLambda Exp Exp 
+  deriving(Read, Show, Eq)
 
 
 interp :: Exp -> [FunDec] -> Exp 
@@ -75,4 +77,31 @@ binOperation op e1 e2 decs = Num (op n1 n2)
   (Num n1) = interp e1 decs
   (Num n2) = interp e2 decs
   
+parse :: String -> Exp
+parse = read
+
+-- some HUnit tests cases
+exp1, exp2, exp3, exp4, exp5, exp6, exp7 :: String
+exp1 = "Num 5"
+t1 = TestCase (assertEqual "Number" (Num 5) (interp (parse exp1) []))
+
+exp2 = "Add (Num 5) (Num 5)"
+t2 = TestCase (assertEqual "Add" (interp (parse exp2) []) (Num 10))
+
+exp3 = "Let \"x\" (Add (Num 5) (Num 5)) (Add (Ref \"x\") (Ref \"x\"))"
+t3 = TestCase (assertEqual "Let1" (interp (parse exp3) []) (Num 20))
+
+exp4 = "Let \"x\" (Num 5) (Let \"y\" (Ref \"x\") (Ref \"y\"))"
+t4 = TestCase (assertEqual "Let2" (interp (parse exp4) []) (Num  5))
+
+exp5 = "Let \"x\" (Num 5) (Let \"x\" (Ref \"x\") (Ref \"x\"))"
+t5 = TestCase (assertEqual "Let3" (interp (parse exp5) []) (Num  5))
+
+exp6 = "AppLambda (Lambda \"x\" (Add (Ref \"x\") (Num 2)) ) (Num 1)" 
+t6 = TestCase (assertEqual "Lambda" (interp (parse exp6) []) (Num  3))
+
+{-exp7 = "Let \"x\" (Num 3) (Let \"f\" (Lambda \"y\" (Add (Ref \"y\") (Ref \"x\"))) (Let \"x\" (Num 5) (AppLambda (Ref \"f\") (Num 4)))"-}
+{-t7 = TestCase (assertEqual "Estatic" (interp (parse exp6) []) (Num  7))-}
+
+
 
